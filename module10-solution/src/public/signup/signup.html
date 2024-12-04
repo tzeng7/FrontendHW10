@@ -36,7 +36,8 @@
       <input type="text" name="phone" placeholder="Phone ###-###-####"
         style="color: black" 
         ng-model="reg.user.phone"
-        pattern="(\d{3})-(\d{3})-(\d{4})">
+        pattern="(\d{3})-(\d{3})-(\d{4})"
+        required>
         <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
           Phone must be in the format ###-###-####.
         </span>
@@ -45,8 +46,7 @@
         style="color: black" 
         ng-model="reg.user.favoritedish"
         required
-        minlength="2"
-        ng-blur="reg.validateDish(reg.user.favoritedish)">
+        ng-blur="reg.validateDish()">
        <span ng-if="!reg.foundItem && reg.hasSearched">
           No such menu number exists.
        </span>

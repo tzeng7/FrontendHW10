@@ -9,12 +9,20 @@
 		var reg = this;
 
 		reg.user = {};
-		reg.validateDish = function (categoryShortName) {
-			var number = categoryShortName.slice(1) - 1;
+
+		reg.validateDish = function () {
+			var favorite = reg.user.favoritedish;
+			if (favorite.length < 2) {
+				console.log(favorite);
+				reg.foundItem = false;
+				reg.hasSearched = true;
+				return;
+			}
+			var number = favorite.slice(1) - 1;
 			reg.completed = true;
 			return $http({
 					method: "GET",
-					url:("https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/" + categoryShortName.slice(0, 1) + "/menu_items/" + number + ".json")
+					url:("https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/" + favorite.slice(0, 1) + "/menu_items/" + number + ".json")
 			}).then(function(response) {
 				console.log(response.data);
 				if (response.data == null) {
@@ -24,8 +32,7 @@
 					reg.hasSearched = true;
 					reg.foundItem = true;
 					reg.user.itemDetails = response.data;
-					reg.user.itemCategory = categoryShortName.slice(0, 1);
-					reg.hasSaved = true;
+					reg.user.itemCategory = favorite.slice(0, 1);
 				}
 				return response.data;
 			}).catch(function(error) {
@@ -38,6 +45,7 @@
 		reg.submit = function() {
 			if (reg.foundItem) {
 				UserService.saveUser(reg.user);
+				reg.hasSaved = true;
 			}
 		}
 		
