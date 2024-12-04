@@ -20,7 +20,7 @@
 				if (result) {
                 	reg.foundItem = true;
                 	reg.user.itemDetails = result;
-                    reg.user.itemCategory = favorite.slice(0, 1);
+                	reg.user.itemCategory = favorite.replace(/[^A-Z]/g, '');
                     reg.user.itemDescription = result.description;
                     console.log(reg.foundItem);
 				}
