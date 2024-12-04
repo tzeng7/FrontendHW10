@@ -1,0 +1,27 @@
+<span ng-if="!info.signedUp">
+	Not Signed Up Yet. Sign up Now!
+</span>
+
+<span ng-if="info.signedUp">
+First Name: {{info.data.firstname}}
+<br>
+Last Name: {{info.data.lastname}}
+<br>
+
+Email: {{info.data.email}}
+<br>
+
+Phone Number: {{info.data.phone}}
+<br>
+
+Favorite Dish: <br>
+<img class="img-responsive" width="250" height="150" ng-src="images/menu/{{info.data.itemCategory}}/{{info.data.favoritedish}}.jpg" alt="Orange Chicken" src="images/menu/{{info.data.itemCategory}}/{{info.data.favoritedish}}.jpg">
+
+{{info.data.itemDetails.name}} <br> 
+
+Favorite Dish Description: {{info.data.itemDetails.description}}
+
+
+
+</span>
+
